@@ -68,7 +68,10 @@ ext {
             material:               "com.google.android.material:material:${materialVersion}",
             javaxInject:            "javax.inject:javax.inject:${javaxInjectVersion}",
             okHttp:                 "com.squareup.okhttp3:okhttp:${okHttpVersion}",
-            okHttpLogger:           "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+            okHttpLogger:           "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit:               "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverter:      "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapter:        "com.github.akarnokd:rxjava3-retrofit-adapter:${rxKotlinVersion}",
     ]
 
     // :app test

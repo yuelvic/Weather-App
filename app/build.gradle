@@ -51,6 +51,11 @@ dependencies {
     implementation appDependencies.rxAndroid
     implementation appDependencies.gson
     implementation appDependencies.material
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitAdapter
+    implementation appDependencies.retrofitConverter
+    implementation appDependencies.okHttp
+    implementation appDependencies.okHttpLogger
 
     debugImplementation appDependencies.chuckerDebug
     releaseImplementation appDependencies.chuckerRelease
