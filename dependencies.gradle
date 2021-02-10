@@ -72,6 +72,9 @@ ext {
             retrofit:               "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter:      "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
             retrofitAdapter:        "com.github.akarnokd:rxjava3-retrofit-adapter:${rxKotlinVersion}",
+            swipeRefreshLayout:     "androidx.swiperefreshlayout:swiperefreshlayout:${swipeRefreshVersion}",
+            navigationFragment:     "androidx.navigation:navigation-fragment-ktx:${navVersion}",
+            navigationUi:           "androidx.navigation:navigation-ui-ktx:${navVersion}"
     ]
 
     // :app test

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cityListFragment">
+
+    <fragment
+        android:id="@+id/cityListFragment"
+        android:name="com.homecredit.weather.screens.CityListFragment"
+        android:label="CityListFragment">
+        <action
+            android:id="@+id/action_cityListFragment_to_cityDetailsFragment"
+            app:destination="@id/cityDetailsFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/cityDetailsFragment"
+        android:name="com.homecredit.weather.screens.CityDetailsFragment"
+        android:label="CityDetailsFragment" />
+
+</navigation>

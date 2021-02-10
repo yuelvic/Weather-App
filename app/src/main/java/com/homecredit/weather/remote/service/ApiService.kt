@@ -1,6 +1,7 @@
 package com.homecredit.weather.remote.service
 
 import com.homecredit.weather.data.models.City
+import com.homecredit.weather.data.models.Group
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,14 +11,14 @@ interface ApiService {
     @GET("data/2.5/group")
     fun getCities(
         @Query("id") ids: String,
-        @Query("units") unit: String,
+        @Query("units") unit: String? = "metric",
         @Query("appId") key: String
-    ): Single<ArrayList<City>>
+    ): Single<Group>
 
-    @GET("data/2.5/city")
+    @GET("data/2.5/weather")
     fun getCity(
         @Query("id") ids: String,
-        @Query("units") unit: String,
+        @Query("units") unit: String? = "metric",
         @Query("appId") key: String
     ): Single<City>
 

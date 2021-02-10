@@ -5,8 +5,11 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.homecredit.weather.BuildConfig
+import com.homecredit.weather.data.repository.WeatherRemote
 import com.homecredit.weather.remote.ServiceFactory
+import com.homecredit.weather.remote.repository.WeatherRemoteImpl
 import com.homecredit.weather.remote.service.ApiService
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
@@ -38,5 +41,8 @@ abstract class RemoteModule {
             )
         }
     }
+
+    @Binds
+    abstract fun bindWeatherRemote(weatherRemoteImpl: WeatherRemoteImpl): WeatherRemote
 
 }

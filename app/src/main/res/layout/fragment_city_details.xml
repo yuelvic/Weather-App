@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/srlCityDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_large"
+            android:textSize="@dimen/sp_medium"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Manila"/>
+
+        <ImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_not_favorite"
+            app:layout_constraintTop_toTopOf="@id/tvCity"
+            app:layout_constraintBottom_toBottomOf="@id/tvCity"
+            app:layout_constraintStart_toEndOf="@id/tvCity"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_large"
+            android:textSize="@dimen/sp_large"
+            app:layout_constraintTop_toTopOf="@id/tvDescription"
+            app:layout_constraintBottom_toBottomOf="@id/tvRange"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="36.1 C"/>
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_large"
+            android:layout_marginStart="@dimen/dp_large"
+            android:textSize="@dimen/sp_small"
+            app:layout_constraintTop_toBottomOf="@id/tvCity"
+            app:layout_constraintStart_toEndOf="@id/tvTemp"
+            tools:text="Clouds"/>
+
+        <TextView
+            android:id="@+id/tvRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_small"
+            android:textSize="@dimen/sp_small"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            app:layout_constraintStart_toStartOf="@id/tvDescription"
+            tools:text="High 36C / Low 36C"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

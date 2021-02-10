@@ -7,6 +7,8 @@ plugins {
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
     compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
     buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
@@ -22,9 +24,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "API_KEY", "\""+localProperties['apiKey']+"\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_KEY", "\""+localProperties['apiKey']+"\""
         }
     }
     compileOptions {
@@ -56,6 +62,9 @@ dependencies {
     implementation appDependencies.retrofitConverter
     implementation appDependencies.okHttp
     implementation appDependencies.okHttpLogger
+    implementation appDependencies.swipeRefreshLayout
+    implementation appDependencies.navigationFragment
+    implementation appDependencies.navigationUi
 
     debugImplementation appDependencies.chuckerDebug
     releaseImplementation appDependencies.chuckerRelease

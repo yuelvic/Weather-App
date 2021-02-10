@@ -2,9 +2,15 @@ package com.homecredit.weather.data.models
 
 import com.google.gson.annotations.SerializedName
 
+data class Group(
+    @SerializedName("list")
+    var cities: ArrayList<City>?
+)
+
 data class City(
     var id: Long?,
     var name: String?,
+    @SerializedName("main")
     var temperature: Temperature?,
     var weather: ArrayList<Weather>?
 )
@@ -20,4 +26,9 @@ data class Temperature(
 data class Weather(
     @SerializedName("main")
     var status: String?
+)
+
+data class WeatherRequest(
+        var ids: String,
+        var key: String
 )

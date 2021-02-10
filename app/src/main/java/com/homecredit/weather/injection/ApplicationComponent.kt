@@ -2,10 +2,7 @@ package com.homecredit.weather.injection
 
 import android.app.Application
 import com.homecredit.weather.WeatherApplication
-import com.homecredit.weather.injection.module.ApplicationModule
-import com.homecredit.weather.injection.module.CacheModule
-import com.homecredit.weather.injection.module.RemoteModule
-import com.homecredit.weather.injection.module.UiModule
+import com.homecredit.weather.injection.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -14,9 +11,11 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
+    PresentationModule::class,
     ApplicationModule::class,
     RemoteModule::class,
     CacheModule::class,
+    DataModule::class,
     UiModule::class
 ])
 interface ApplicationComponent {
