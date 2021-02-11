@@ -11,8 +11,8 @@ class PreferenceCacheImpl @Inject constructor(
     private val preferenceHelper: PreferenceHelper
 ): PreferenceCache {
 
-    override fun getFavorites(): Single<ArrayList<City>> {
-        TODO("Not yet implemented")
+    override fun getFavorites(): Single<ArrayList<City>> = Single.defer {
+        Single.just(preferenceHelper.getFavorites())
     }
 
     override fun addFavorite(city: City): Completable = Completable.defer {

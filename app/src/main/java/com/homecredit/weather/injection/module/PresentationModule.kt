@@ -3,6 +3,7 @@ package com.homecredit.weather.injection.module
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.homecredit.weather.presenter.ViewModelFactory
+import com.homecredit.weather.presenter.viewmodel.PreferenceViewModel
 import com.homecredit.weather.presenter.viewmodel.WeatherViewModel
 import dagger.Binds
 import dagger.MapKey
@@ -23,6 +24,11 @@ abstract class PresentationModule {
     @IntoMap
     @ViewModelKey(WeatherViewModel::class)
     abstract fun bindWeatherViewModel(viewModel: WeatherViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PreferenceViewModel::class)
+    abstract fun bindPreferenceViewModel(viewModel: PreferenceViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory

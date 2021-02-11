@@ -12,7 +12,8 @@ data class City(
     var name: String?,
     @SerializedName("main")
     var temperature: Temperature?,
-    var weather: ArrayList<Weather>?
+    var weather: ArrayList<Weather>?,
+    var favorite: Boolean = false
 )
 
 data class Temperature(

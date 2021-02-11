@@ -5,7 +5,7 @@ import java.lang.reflect.Type
 
 object Parser {
 
-    fun <T: Any> itemType(): Type {
+    inline fun <reified T> itemType(): Type {
         return object : TypeToken<ArrayList<T>>() {}.type
     }
 

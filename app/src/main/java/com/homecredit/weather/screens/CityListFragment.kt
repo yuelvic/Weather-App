@@ -12,6 +12,7 @@ import com.homecredit.weather.constants.CityCode
 import com.homecredit.weather.data.models.City
 import com.homecredit.weather.presenter.ViewModelFactory
 import com.homecredit.weather.presenter.data.ResourceState
+import com.homecredit.weather.presenter.viewmodel.PreferenceViewModel
 import com.homecredit.weather.presenter.viewmodel.WeatherViewModel
 import com.homecredit.weather.screens.adapter.CityListAdapter
 import dagger.android.support.AndroidSupportInjection
@@ -23,6 +24,7 @@ class CityListFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var weatherViewModel: WeatherViewModel
+    private lateinit var preferenceViewModel: PreferenceViewModel
 
     private val adapter by lazy { CityListAdapter().apply {
         setOnItemClickListener(object : CityListAdapter.OnItemClickListener {
@@ -62,6 +64,15 @@ class CityListFragment : BaseFragment() {
                     getCities(cityIds())
                 }
 
+        preferenceViewModel = ViewModelProvider(this, viewModelFactory)
+            .get(PreferenceViewModel::class.java).apply {
+                favoritesListLiveData().observe(viewLifecycleOwner, {
+                    if (it.status == ResourceState.SUCCESS) {
+                        adapter.setFavorites(it.data!!)
+                    }
+                })
+            }
+
         rvCities.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@CityListFragment.adapter
@@ -74,7 +85,10 @@ class CityListFragment : BaseFragment() {
         srlCities.isRefreshing = isRefreshing
     }
 
-    private fun showCities(cities: ArrayList<City>) = adapter.addCities(cities)
+    private fun showCities(cities: ArrayList<City>) {
+        adapter.addCities(cities)
+        preferenceViewModel.getFavorites()
+    }
 
     private fun cityIds(): String = "${CityCode.MANILA},${CityCode.PRAGUE},${CityCode.SEOUL}"
 

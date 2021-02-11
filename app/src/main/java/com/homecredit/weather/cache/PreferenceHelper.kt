@@ -3,7 +3,7 @@ package com.homecredit.weather.cache
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.homecredit.weather.data.Parser
+import com.google.gson.reflect.TypeToken
 import com.homecredit.weather.data.models.City
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -28,7 +28,7 @@ open class PreferenceHelper @Inject constructor(
     fun getFavorites(): ArrayList<City> {
         val rawFavorites = preference.getString(PREF_WEATHER_FAVORITES, "")
         return if (!rawFavorites.isNullOrBlank()) {
-            gson.fromJson(rawFavorites, Parser.itemType<City>())
+            gson.fromJson(rawFavorites, object: TypeToken<ArrayList<City>>() {}.type)
         } else {
             arrayListOf()
         }
@@ -40,7 +40,7 @@ open class PreferenceHelper @Inject constructor(
     }
 
     fun removeFavorite(city: City) {
-        val favorites = getFavorites().apply { distinctBy { it.id == city.id } }
+        val favorites = getFavorites().apply { removeAll { it.id == city.id } }
         edit(favorites)
     }
 

@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_city.view.*
 class CityListAdapter : RecyclerView.Adapter<CityListAdapter.ViewHolder>() {
 
     private val cities: ArrayList<City> = arrayListOf()
+
     private var onItemClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener {
@@ -24,6 +25,7 @@ class CityListAdapter : RecyclerView.Adapter<CityListAdapter.ViewHolder>() {
                 tvTemp.text = "${city.temperature?.temp}\u2103"
                 tvCity.text = city.name
                 tvDescription.text = city.weather!![0].status
+                ivFavorite.visibility = if (city.favorite) View.VISIBLE else View.INVISIBLE
                 setBackgroundColor(getColorCoding(city.temperature?.temp!!))
                 setOnClickListener { onItemClickListener?.onItemClick(city) }
             }
@@ -53,6 +55,11 @@ class CityListAdapter : RecyclerView.Adapter<CityListAdapter.ViewHolder>() {
             clear()
             addAll(cities)
         }
+        notifyDataSetChanged()
+    }
+
+    fun setFavorites(cities: ArrayList<City>) {
+        this.cities.map { it.favorite = cities.any { fav -> it.id == fav.id }  }
         notifyDataSetChanged()
     }
 
