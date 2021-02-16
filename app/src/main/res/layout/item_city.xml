@@ -35,6 +35,10 @@
             app:layout_constraintBottom_toBottomOf="@id/tvTemp"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!--
+         TODO: medium: Would be better to use standardized TextAppearances instead of overriding
+          textStyle and textColors every time.
+         -->
         <TextView
             android:id="@+id/tvCity"
             android:layout_width="wrap_content"

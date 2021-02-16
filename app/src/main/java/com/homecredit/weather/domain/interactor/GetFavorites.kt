@@ -11,6 +11,7 @@ open class GetFavorites @Inject constructor(
     private val preferenceCache: PreferenceCache,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
+    // TODO: low: Use `Unit` in Kotlin instead of Void.
 ) : SingleUseCase<ArrayList<City>, Void>(threadExecutor, postExecutionThread) {
 
     override fun buildUseCaseObservable(params: Void?): Single<ArrayList<City>> {

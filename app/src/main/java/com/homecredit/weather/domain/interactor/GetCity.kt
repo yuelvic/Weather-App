@@ -14,6 +14,10 @@ open class GetCity @Inject constructor(
         postExecutionThread: PostExecutionThread
 ) : SingleUseCase<City, WeatherRequest>(threadExecutor, postExecutionThread) {
 
+    // TODO: medium: You accept nullable `WeatherRequest` but always treat it as if it could never
+    //  be null. Would be nice to define params as not nullable and propagate the nullability
+    //  issue upstream where the nullability will probably just magically disappear since
+    //  you always provide non-null object.
     override fun buildUseCaseObservable(params: WeatherRequest?): Single<City> {
         return weatherRemote.getCity(
                 ids = params?.ids!!,

@@ -2,6 +2,8 @@ package com.homecredit.weather.data.models
 
 import com.google.gson.annotations.SerializedName
 
+// TODO: high: Why is everything mutable? :(
+// TODO: high: Why is everything nullable? :'(
 data class Group(
     @SerializedName("list")
     var cities: ArrayList<City>?

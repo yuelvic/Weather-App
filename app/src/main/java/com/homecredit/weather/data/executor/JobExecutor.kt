@@ -7,12 +7,22 @@ import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+// TODO: medium: Honestly I don't see a point in this and `PostExecutionThread`.
+//  They are only used for `subscribeOn` and `observeOn` Rx operators in `SingleUseCase` and
+//  `CompletableUseCase`. Why not just use `Scheduler` class directly? `Schedulers.IO` or
+//  `Schedulers.Trampoline` would achieve the same goal. Depending on `Scheduler` directly
+//  would also simplify Unit testing in cases where timing is important by using
+//  `TestScheduler` that can artificially advance time without actually waiting.
+//  Furthermore, this is not tested and since it deals with low level threads, you would have
+//  hard time writing such tests by yourself.
 open class JobExecutor @Inject constructor() : ThreadExecutor {
 
+    // TODO: low: No need to have it as a class member, could be inlined inside constructor.
     private val workQueue: LinkedBlockingQueue<Runnable> = LinkedBlockingQueue()
 
     private val threadPoolExecutor: ThreadPoolExecutor
 
+    // TODO: low: No need to have it as a class member, could be inlined inside constructor.
     private val threadFactory: ThreadFactory
 
     init {

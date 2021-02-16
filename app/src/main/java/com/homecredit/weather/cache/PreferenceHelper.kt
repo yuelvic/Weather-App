@@ -19,6 +19,7 @@ open class PreferenceHelper @Inject constructor(
         private const val PREF_WEATHER_FAVORITES = "favorites"
     }
 
+    // TODO: low: Can be joined with assignment
     private val preference: SharedPreferences
 
     init {

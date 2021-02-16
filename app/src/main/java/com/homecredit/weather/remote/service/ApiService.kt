@@ -17,6 +17,7 @@ interface ApiService {
 
     @GET("data/2.5/weather")
     fun getCity(
+        // TODO: low: Better name it just `id` since it only contains a single id.
         @Query("id") ids: String,
         @Query("units") unit: String? = "metric",
         @Query("appId") key: String

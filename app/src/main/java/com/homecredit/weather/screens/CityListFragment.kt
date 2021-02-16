@@ -23,10 +23,13 @@ class CityListFragment : BaseFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
+    // TODO: low: Why not utilize:
+    //  `val weatherViewModel: WeatherViewModel by viewModels { viewModelFactory }`
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var preferenceViewModel: PreferenceViewModel
 
     private val adapter by lazy { CityListAdapter().apply {
+        // TODO: medium: Provide the click listener via constructor and make it immutable.
         setOnItemClickListener(object : CityListAdapter.OnItemClickListener {
             override fun onItemClick(city: City) {
                 view?.findNavController()?.navigate(
@@ -87,9 +90,12 @@ class CityListFragment : BaseFragment() {
 
     private fun showCities(cities: ArrayList<City>) {
         adapter.addCities(cities)
+        // TODO: medium: Why do we refresh favorites when we download new data from the server?
+        //  It's not like that the network request would have changed what we store in SP.
         preferenceViewModel.getFavorites()
     }
 
+    // TODO: low: Why is this coming from the View?
     private fun cityIds(): String = "${CityCode.MANILA},${CityCode.PRAGUE},${CityCode.SEOUL}"
 
 }
