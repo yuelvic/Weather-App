@@ -23,9 +23,13 @@ class CityDetailsFragment : BaseFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
+    // TODO: low: Why not utilize:
+    //  `val weatherViewModel: WeatherViewModel by viewModels { viewModelFactory }`
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var preferenceViewModel: PreferenceViewModel
 
+    // todo: medium: If every usage of `city` expects this to not be null, should be declared
+    //  as `lateinit var: City` instead.
     private var city: City? = null
     private var isFavorite = false
 
@@ -38,6 +42,8 @@ class CityDetailsFragment : BaseFragment() {
     }
 
     private fun setup() {
+        // TODO: high: Don't re-download all the data just because there was a configuration change
+        //  that caused the view to be recreated.
         weatherViewModel = ViewModelProvider(this, viewModelFactory)
             .get(WeatherViewModel::class.java).apply {
                 cityLiveData().observe(viewLifecycleOwner, {
@@ -86,8 +92,11 @@ class CityDetailsFragment : BaseFragment() {
         this.city = city
 
         tvCity.text = city.name
+        // TODO: low: Do not concatenate text displayed with setText. Use resource string with placeholders.
         tvTemp.text = "${city.temperature?.temp}\u2103"
         tvDescription.text = city.weather?.get(0)!!.status
+        // TODO: low: Do not concatenate text displayed with setText. Use resource string with placeholders.
+        // TODO: low: String literal in setText can not be translated. Use Android resources instead.
         tvRange.text = "High ${city.temperature?.high?.toInt()}℃ / " +
                 "Low ${city.temperature?.low?.toInt()}℃"
 

@@ -13,6 +13,10 @@ import com.homecredit.weather.presenter.data.ResourceState
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import javax.inject.Inject
 
+// TODO: high: Violating Interface Segregation Principle.
+//  Why Does `CityListFragment` have an option to `getCity` when it never uses it? Similarly,
+//  why does `CityDetailsFragment` have an option to `getCities` when it never uses it?
+//  Those methods should be put into two separate ViewModels for respective Fragments.
 open class WeatherViewModel @Inject internal constructor(
         private val getCities: GetCities,
         private val getCity: GetCity
@@ -27,6 +31,7 @@ open class WeatherViewModel @Inject internal constructor(
         super.onCleared()
     }
 
+    // TODO: low: Exposing MutableLiveData instead of LiveData. 2x
     fun citiesLiveData() = citiesLiveData
 
     fun cityLiveData() = cityLiveData

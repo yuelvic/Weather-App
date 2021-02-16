@@ -9,6 +9,7 @@ import javax.inject.Inject
 
 class WeatherRemoteImpl @Inject constructor(private val apiService: ApiService) : WeatherRemote {
 
+    // TODO: medium: Should accept a List<Int> of ids and `joinToString(",")` them here.
     override fun getCities(ids: String, key: String): Single<Group> {
         return apiService.getCities(
             ids = ids,

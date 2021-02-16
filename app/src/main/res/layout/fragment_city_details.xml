@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- TODO: low: Using DayNight Theme but hardcoding black color -->
         <TextView
             android:id="@+id/tvCity"
             android:layout_width="wrap_content"
@@ -23,6 +24,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Manila"/>
 
+        <!--
+         TODO: medium: The image is too small to comfortably click on.
+          See https://support.google.com/accessibility/android/answer/7101858?hl=en
+         -->
         <ImageView
             android:id="@+id/ivFavorite"
             android:layout_width="wrap_content"

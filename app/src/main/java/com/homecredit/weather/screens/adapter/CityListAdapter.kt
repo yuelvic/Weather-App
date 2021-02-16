@@ -22,6 +22,7 @@ class CityListAdapter : RecyclerView.Adapter<CityListAdapter.ViewHolder>() {
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(city: City) {
             view.apply {
+                // TODO: medium: Do not concatenate text displayed with setText. Use resource string with placeholders.
                 tvTemp.text = "${city.temperature?.temp}\u2103"
                 tvCity.text = city.name
                 tvDescription.text = city.weather!![0].status
@@ -32,6 +33,9 @@ class CityListAdapter : RecyclerView.Adapter<CityListAdapter.ViewHolder>() {
         }
 
         private fun getColorCoding(temperature: Double): Int {
+            // TODO: high: What if the temperature is exactly 0.0? It's going to fall through to the else branch
+            // TODO: medium: Colors should be also extracted to colors.xml
+            // TODO: low: The color (or the temperature category) should have been already calculated on the ViewModel side
             val colorValue = when {
                 temperature < 0 -> "#1976D2"
                 temperature > 0 && temperature <= 15 -> "#26C6DA"
